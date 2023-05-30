@@ -3,6 +3,13 @@
 const express = require('express')
 const app = express()
 
+// Middleware
+const middleware = (req, res, next)=>{
+    console.log('Hello My Middleware')
+    next()
+}
+
+
 app.get('/', (req, res) => {
     res.send('Hello World from the server...')
 })
@@ -15,7 +22,7 @@ app.get('/signup', (req, res) => {
     res.send('Hello Registeration World from the server...')
 })
 
-app.get('/about', (req, res) => {
+app.get('/about', middleware, (req, res) => {
     res.send('Hello About World from the server...')
 })
 
