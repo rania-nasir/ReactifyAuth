@@ -1,10 +1,24 @@
 // Mern Project By Rania
-
+const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 
+// MongoDB Connection
+const db = 'mongodb+srv://raniabm21:5qmdWP2TFAFdPcPA@cluster0.lxrwrzh.mongodb.net/mernstack?retryWrites=true&w=majority'
+
+mongoose.connect(db, {
+    useNewUrlParser: true,
+    // useCreateIndex: true,
+    useUnifiedTopology: true,
+    // useFindAndModify: false
+}).then(() => {
+    console.log('Connection Successful');
+}).catch((err) => {
+    console.log('No Connection ' + err);
+})
+
 // Middleware
-const middleware = (req, res, next)=>{
+const middleware = (req, res, next) => {
     console.log('Hello My Middleware')
     next()
 }
