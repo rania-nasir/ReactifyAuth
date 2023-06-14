@@ -1,21 +1,14 @@
 // Mern Project By Rania
+const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 
-// MongoDB Connection
-const db = 'mongodb+srv://raniabm21:5qmdWP2TFAFdPcPA@cluster0.lxrwrzh.mongodb.net/mernstack?retryWrites=true&w=majority'
+// To secure code by keeping password & API secret
+dotenv.config({ path: './config.env' });
+const PORT = process.env.PORT
 
-mongoose.connect(db, {
-    useNewUrlParser: true,
-    // useCreateIndex: true,
-    useUnifiedTopology: true,
-    // useFindAndModify: false
-}).then(() => {
-    console.log('Connection Successful');
-}).catch((err) => {
-    console.log('No Connection ' + err);
-})
+require('./db/conn');
 
 // Middleware
 const middleware = (req, res, next) => {
@@ -44,6 +37,6 @@ app.get('/contact', (req, res) => {
     res.send('Hello Contact World from the server...')
 })
 
-app.listen(3000, () => {
-    console.log(`Server is running at port 3000...`)
+app.listen(PORT, () => {
+    console.log(`Server is running at port ${PORT}...`)
 })
