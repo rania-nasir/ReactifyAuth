@@ -2,8 +2,18 @@
   text-align: center;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+}
+
 .App-logo {
-  height: 40vmin;
+  width: 250px;
   pointer-events: none;
 }
 
@@ -32,6 +42,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
