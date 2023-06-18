@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcryptjs')
 
 require('../db/conn');
 const User = require('../model/userSchema');
@@ -51,23 +52,22 @@ router.post('/register', async (req, res) => {
     try {
         const userExist = await User.findOne({ email: email });
         if (userExist) {
-            return res.status(422).json('Email Already Exist!')
+            return res.status(422).json('Invalid Credentials!')
         }
         else if (password != cpassword) {
-            return res.status(422).json('Password not matching!')
+            return res.status(422).json('Invalid Credentials!')
         }
         else {
             const user = new User({ name, email, phone, work, password, cpassword })
 
             // Middleware for hashing password (whenever/whereever save call)
             const userRegister = await user.save();
-            console.log(name);
-            console.log(email);
+
             if (userRegister) {
                 res.status(201).json({ message: 'User Registered Successfully!' });
             }
             else {
-                res.status(500).json({ error: 'Failed To Registered!' })
+                res.status(500).json({ error: 'Invalid Credentials!' })
             }
         }
     }
@@ -90,9 +90,14 @@ router.post('/signin', async (req, res) => {
         // console.log(userLogin)
 
         if (userLogin) {
-            res.status(200).json({ message: 'User SignIn Successfully!' });
+            const isMatch = await bcrypt.compare(password, userLogin.password);
+            if (isMatch) {
+                res.status(200).json({ message: 'User SignIn Successfully!' });
+            } else {
+                res.status(400).json({ error: 'Invalid Credentials!' })
+            }
         } else {
-            res.status(400).json({ error: 'Failed To SignIn!' })
+            res.status(400).json({ error: 'Invalid Credentials!' })
         }
 
     } catch (err) {
