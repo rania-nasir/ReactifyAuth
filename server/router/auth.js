@@ -94,8 +94,16 @@ router.post('/signin', async (req, res) => {
         if (userLogin) {
             const isMatch = await bcrypt.compare(password, userLogin.password);
 
+            // Middleware for JWT token 
             token = await userLogin.generateAuthToken();
             console.log(token);
+
+            // cookie
+            res.cookie('jwtoken', token, {
+                // expires: new Date(Date.now + 25892000000),
+                expiresIn: '30d',
+                httpOnly: true
+            });
 
             if (isMatch) {
                 res.status(200).json({ message: 'User SignIn Successfully!' });
@@ -127,6 +135,7 @@ const middleware = (req, res, next) => {
 }
 
 router.get('/about', middleware, (req, res) => {
+    res.cookie("TEST", 'mern');
     res.send('Hello About World from the server...')
 })
 
