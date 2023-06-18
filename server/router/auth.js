@@ -50,15 +50,25 @@ router.post('/register', async (req, res) => {
 
     try {
         const userExist = await User.findOne({ email: email });
-        if (userExist) { return res.status(422).json('Email Already Exist!') }
+        if (userExist) {
+            return res.status(422).json('Email Already Exist!')
+        }
+        else if (password != cpassword) {
+            return res.status(422).json('Password not matching!')
+        }
+        else {
+            const user = new User({ name, email, phone, work, password, cpassword })
 
-        const user = new User({ name, email, phone, work, password, cpassword })
-
-        const userRegister = await user.save();
-        if (userRegister) {
-            res.status(201).json({ message: 'User Registered Successfully!' });
-        } else {
-            res.status(500).json({ error: 'Failed To Registered!' })
+            // Middleware for hashing password (whenever/whereever save call)
+            const userRegister = await user.save();
+            console.log(name);
+            console.log(email);
+            if (userRegister) {
+                res.status(201).json({ message: 'User Registered Successfully!' });
+            }
+            else {
+                res.status(500).json({ error: 'Failed To Registered!' })
+            }
         }
     }
     catch (err) {
