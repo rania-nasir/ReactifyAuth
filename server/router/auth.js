@@ -66,6 +66,30 @@ router.post('/register', async (req, res) => {
     }
 })
 
+// login route
+router.post('/signin', async (req, res) => {
+    // console.log(req.body);
+    // res.json('awesome');
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            res.status(422).json({ error: "Please Fill All The Fields Properly!" });
+        }
+
+        const userLogin = await User.findOne({ email: email });
+        // console.log(userLogin)
+
+        if (userLogin) {
+            res.status(200).json({ message: 'User SignIn Successfully!' });
+        } else {
+            res.status(400).json({ error: 'Failed To SignIn!' })
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
+})
+
 
 router.get('/signin', (req, res) => {
     res.send('Hello Log In World from the server...')
