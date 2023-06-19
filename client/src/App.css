@@ -47,3 +47,59 @@
     transform: rotate(360deg);
   }
 }
+
+img[alt=Registeration-Pic] {
+  width: 250px;
+  margin-left: 10px;
+  margin-top: 70px;
+}
+
+img[alt=Login-Pic] {
+  width: 250px;
+  margin: 0px 30px;
+  margin-top: 30px;
+}
+
+.right {
+  float: left;
+}
+
+.form-group {
+  border-bottom: 1px solid #c4cad7;
+  padding-top: 10px;
+}
+
+input[type=text] {
+  width: 250px;
+  padding-bottom: 5px;
+  margin: 4px 0;
+  border-style: none;
+}
+
+input[type=text]:focus {
+  outline: none;
+
+}
+
+.submit-div {
+  text-align: left;
+  padding: 28px;
+}
+
+.form-title {
+  text-align: center;
+  margin-top: 5px;
+}
+
+label {
+  padding-right: 20px;
+}
+
+.signup-image-link {
+  text-decoration: none;
+  color: #282c34;
+}
+
+.login-form{
+  padding-top: 40px;
+}
