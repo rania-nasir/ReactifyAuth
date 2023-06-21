@@ -100,6 +100,32 @@ label {
   color: #282c34;
 }
 
-.login-form{
+.login-form {
   padding-top: 40px;
+}
+
+.box {
+  width: 390px;
+  border: 1px solid rgb(246, 246, 246);
+  background-color: rgb(246, 246, 246);
+}
+
+#contact_form input[type=text] {
+  width: 287px;
+  margin: 0px 10px 10px 10px;
+  border: 1px solid gainsboro;
+  background-color: rgb(246, 246, 246);
+}
+
+img[alt=profile] {
+  width: 180px;
+}
+
+textarea {
+  border-color: #c4cad7;
+  background-color: rgb(246, 246, 246);
+}
+
+textarea:focus{
+  outline: none;
 }

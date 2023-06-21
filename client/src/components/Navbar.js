@@ -17,19 +17,19 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item active">
-                            <NavLink className="nav-link" to="/">Home <span className="sr-only">(current)</span></NavLink>
+                            <NavLink className="nav-link" to="/">Home <span className="sr-only"></span></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/about">AboutMe</NavLink>
+                            <NavLink className="nav-link" to="/about">About <span className="sr-only"></span></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                            <NavLink className="nav-link" to="/contact">Contact<span className="sr-only"></span></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/login">Login</NavLink>
+                            <NavLink className="nav-link" to="/login">Login<span className="sr-only"></span></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/signup">Register</NavLink>
+                            <NavLink className="nav-link" to="/signup">Register<span className="sr-only"></span></NavLink>
                         </li>
                     </ul>
                 </div>
