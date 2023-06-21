@@ -6,11 +6,11 @@ const Signup = () => {
     return (
         <>
             <section className="signup">
-                <div className="container mt-4 center">
+                <div className="container mt-3 center">
                     <div className="signup-content">
                         <div className="signup-form">
                             <h2 className="form-title">Sign up</h2>
-                            <form className="register-form right m-3" id="register-form" action=''>
+                            <form className="register-form right m-2" id="register-form" action=''>
                                 <div className="form-group">
                                     <label htmlFor="name"><i class="material-symbols-outlined">person_2</i> </label>
                                     <input placeholder="Your Name" type="text" name="name" id="name" autoComplete="off"></input>
@@ -42,7 +42,7 @@ const Signup = () => {
 
                             <figure className="App right">
                                 <img src={signpic} alt="Registeration-Pic"></img>
-                                <figcaption><NavLink to='/Login.js' className="signup-image-link">I am already register</NavLink></figcaption>
+                                <figcaption><NavLink to='/Login' className="signup-image-link">I am already register</NavLink></figcaption>
                             </figure>
                         </div>
                     </div>

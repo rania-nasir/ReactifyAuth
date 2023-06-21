@@ -12,7 +12,7 @@ const Login = () => {
                             <h2 className="form-title">Log In</h2>
                             <figure className="App right">
                                 <img src={loginpic} alt="Login-Pic"></img>
-                                <figcaption><NavLink to='/signup' className="signup-image-link">Create a account</NavLink></figcaption>
+                                <figcaption><NavLink to='/signup' className="signup-image-link">Create an account</NavLink></figcaption>
                             </figure>
                             <form className="login-form right m-3" id="login-form" action=''>
                                 <div className="form-group">

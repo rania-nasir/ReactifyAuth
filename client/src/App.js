@@ -1,4 +1,5 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
 import "./App.css"
 import Navbar from './components/Navbar'
 import Home from './components/Home'
@@ -6,6 +7,7 @@ import About from './components/About'
 import Login from './components/Login'
 import Contact from './components/Contact'
 import Signup from './components/Signup'
+import Errorpage from './components/Errorpage'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
@@ -30,6 +32,9 @@ const App = () => {
         <Route path='/signup' element={<Signup />}>
         </Route>
 
+        <Route path="*" element={<Errorpage />}>
+
+        </Route>
       </Routes>
 
     </>

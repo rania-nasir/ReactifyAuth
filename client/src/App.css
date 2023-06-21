@@ -1,5 +1,22 @@
+body {
+  font-family: "Trirong", serif;
+}
+
 .App {
   text-align: center;
+}
+
+h1 {
+  font-family: Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
 }
 
 .center {
@@ -105,27 +122,76 @@ label {
 }
 
 .box {
-  width: 390px;
-  border: 1px solid rgb(246, 246, 246);
-  background-color: rgb(246, 246, 246);
+  width: 380px;
+  height: 90px;
+  /* border: 1px solid rgb(226, 226, 226); */
+  background-color: rgb(240, 240, 240);
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.box:hover {
+  /* width: 385px;
+  height: 95px; */
+  border-radius: 0px;
+  background-color: rgb(190, 211, 255);
 }
 
 #contact_form input[type=text] {
+  transition: 0.5s;
   width: 287px;
   margin: 0px 10px 10px 10px;
-  border: 1px solid gainsboro;
-  background-color: rgb(246, 246, 246);
+  border-radius: 30px;
+  /* border: 1px solid gainsboro; */
+  background-color: rgb(230, 230, 230);
+
+}
+
+#contact_form input[type=text]:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+#contact_form input[type=text]:focus {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(182, 182, 182);
 }
 
 img[alt=profile] {
-  width: 180px;
+  width: 160px;
 }
 
 textarea {
-  border-color: #c4cad7;
-  background-color: rgb(246, 246, 246);
+  padding: 10px;
+  border-radius: 30px;
+  transition: 0.5s;
+  border-color: white;
+  background-color: rgb(230, 230, 230);
 }
 
-textarea:focus{
+textarea:focus {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(182, 182, 182);
+}
+
+textarea:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+textarea:focus {
   outline: none;
+}
+
+img#notfound404 {
+  width: 180px;
+  z-index: -1;
+}
+
+#notfound {
+  font-size: 45px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#error {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
 }
