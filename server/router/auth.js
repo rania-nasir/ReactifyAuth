@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const authenticate = require('../middleware/authenticate')
 
 require('../db/conn');
 const User = require('../model/userSchema');
@@ -117,30 +118,23 @@ router.post('/signin', async (req, res) => {
         console.log(err);
     }
 })
-
-
-router.get('/signin', (req, res) => {
-    res.send('Hello Log In World from the server...')
-})
-
-router.get('/signup', (req, res) => {
-    res.send('Hello Registeration World from the server...')
-})
-
-// Middleware
-const middleware = (req, res, next) => {
-    console.log('Hello My Middleware')
-    next()
-}
-
-router.get('/about', middleware, (req, res) => {
-    res.cookie("TEST", 'mern');
+// About us page
+router.get('/about', authenticate, (req, res) => {
+    
     res.send('Hello About World from the server...')
 })
 
-router.get('/contact', (req, res) => {
-    res.send('Hello Contact World from the server...')
-})
+// router.get('/signin', (req, res) => {
+//     res.send('Hello Log In World from the server...')
+// })
+
+// router.get('/signup', (req, res) => {
+//     res.send('Hello Registeration World from the server...')
+// })
+
+// router.get('/contact', (req, res) => {
+//     res.send('Hello Contact World from the server...')
+// })
 
 
 module.exports = router;
