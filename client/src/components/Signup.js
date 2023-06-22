@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import signpic from "../Images/registerationpic.svg"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-
-    const [user, setUser] = React.useState({
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
         name: "", email: "", phone: "", work: "", password: "", cpassword: ""
     });
 
@@ -17,6 +17,36 @@ const Signup = () => {
         // console.log(setUser({ ...user, [name]: value }));
     }
 
+    const PostData = async (e) => {
+        e.preventDefault();
+
+        const { name, email, phone, work, password, cpassword } = user;
+
+        const res = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name, email, phone, work, password, cpassword
+            })
+        })
+
+        await res.json();
+        if (res.status === 422) {
+            window.alert('Invalid Credentials');
+            console.log('Invalid Credentials');
+        } else if (res.status === 200) {
+            window.alert('Registration Successful');
+            console.log('Registration Successful');
+            navigate("/login");
+        } else {
+            window.alert('Something went wrong');
+            console.log('Something went wrong');
+        }
+
+    }
+
     return (
         <>
             <section className="signup">
@@ -24,7 +54,7 @@ const Signup = () => {
                     <div className="signup-content">
                         <div className="signup-form">
                             <h2 className="form-title">Sign up</h2>
-                            <form className="register-form right m-2" id="register-form" action=''>
+                            <form method="POST" className="register-form right m-2" id="register-form" >
                                 <div className="form-group">
                                     <label htmlFor="name"><i className="material-symbols-outlined">person_2</i> </label>
                                     <input placeholder="Your Name" type="text" name="name" id="name" autoComplete="off"
@@ -62,7 +92,8 @@ const Signup = () => {
                                         onChange={handleInputs} />
                                 </div>
                                 <div className="form-button submit-div">
-                                    <input type="submit" name="signup" id="signup" className="btn btn-primary" value='Register'></input>
+                                    <input type="submit" name="signup" id="signup" className="btn btn-primary" value='Register'
+                                        onClick={PostData}></input>
                                 </div>
                             </form>
 

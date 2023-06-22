@@ -16,11 +16,11 @@ const Login = () => {
                             </figure>
                             <form className="login-form right m-3" id="login-form" action=''>
                                 <div className="form-group">
-                                    <label htmlFor="email"><i class="material-symbols-outlined">mail</i> </label>
+                                    <label htmlFor="email"><i className="material-symbols-outlined">mail</i> </label>
                                     <input placeholder="Your Email" type="text" name="email" id="email" autoComplete="off"></input>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="password"><i class="material-symbols-outlined">lock</i> </label>
+                                    <label htmlFor="password"><i className="material-symbols-outlined">lock</i> </label>
                                     <input placeholder="Your Password" type="text" name="password" id="password" autoComplete="off"></input>
                                 </div>
                                 <div className="form-button submit-div">

@@ -9,7 +9,7 @@ const Contact = () => {
                         <div className="col-lg-10 offset-lg-1 d-flex">
                             {/* phone box */}
                             <div className="box p-2 m-4 contact_info_item d-flex justify-content-start align-items-center">
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     smartphone
                                 </span>
                                 <div className="contact_info_content p-2">
@@ -23,7 +23,7 @@ const Contact = () => {
                             </div>
                             {/* email box */}
                             <div className="box p-2 m-4 contact_info_item d-flex justify-content-start align-items-center">
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     mail
                                 </span>
                                 <div className="contact_info_content p-2">
@@ -37,7 +37,7 @@ const Contact = () => {
                             </div>
                             {/* Address box */}
                             <div className="box p-2 m-4 contact_info_item d-flex justify-content-start align-items-center">
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     home
                                 </span>
                                 <div className="contact_info_content p-2">

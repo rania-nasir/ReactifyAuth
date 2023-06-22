@@ -40,7 +40,6 @@ router.get('/', (req, res) => {
 //     // res.json({ message: req.body });
 //     // res.send('My Registeration Page');
 // })
-
 /////////// Using Async Await
 router.post('/register', async (req, res) => {
 
@@ -65,7 +64,7 @@ router.post('/register', async (req, res) => {
             const userRegister = await user.save();
 
             if (userRegister) {
-                res.status(201).json({ message: 'User Registered Successfully!' });
+                res.status(200).json({ message: 'User Registered Successfully!' });
             }
             else {
                 res.status(500).json({ error: 'Invalid Credentials!' })
