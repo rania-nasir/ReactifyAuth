@@ -80,7 +80,6 @@ router.post('/register', async (req, res) => {
 // login route
 router.post('/signin', async (req, res) => {
     // console.log(req.body);
-    // res.json('awesome');
     try {
         let token;
         const { email, password } = req.body;
@@ -96,13 +95,13 @@ router.post('/signin', async (req, res) => {
 
             // Middleware for JWT token 
             token = await userLogin.generateAuthToken();
-            console.log(token);
+            console.log('the token is -> ' + token);
 
             // cookie
             res.cookie('jwtoken', token, {
                 // expires: new Date(Date.now + 25892000000),
-                expiresIn: '30d',
-                httpOnly: true
+                expiresIn: 3 * 24 * 60 * 60,
+                httpOnly: false
             });
 
             if (isMatch) {
@@ -120,17 +119,9 @@ router.post('/signin', async (req, res) => {
 })
 // About us page
 router.get('/about', authenticate, (req, res) => {
-    
-    res.send('Hello About World from the server...')
+    console.log('Hello my about')
+    res.send(req.rootUser)
 })
-
-// router.get('/signin', (req, res) => {
-//     res.send('Hello Log In World from the server...')
-// })
-
-// router.get('/signup', (req, res) => {
-//     res.send('Hello Registeration World from the server...')
-// })
 
 // router.get('/contact', (req, res) => {
 //     res.send('Hello Contact World from the server...')

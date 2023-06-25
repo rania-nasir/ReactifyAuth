@@ -1,15 +1,47 @@
-import React from "react"
+import React, { useEffect } from "react"
 import raniapic from '../Images/rano.png'
 import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const About = () => {
+    const navigate = useNavigate();
+    const callAboutPage = async () => {
+        try {
+            const res = await fetch('/about', {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            const data = await res.json();
+            console.log('data = ' + data);
+
+            if (!res.status === 200) {
+                 const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
+            console.log('the about file is approacable')
+            console.log(err);
+            navigate('/login')
+        }
+    }
+
+    useEffect(() => {
+        callAboutPage();
+    }, []);
+
     return (
         <>
             <div className="container emp_profile">
-                <form action="" method="">
+                <form method="GET">
                     <div className="row">
                         <div className="col-md-4 mt-5 ml-4">
-                        <div className="profile-img">
+                            <div className="profile-img">
                                 <img src={raniapic} alt="profile"></img>
                             </div>
                             <div className="col-md-2 mt-2">
