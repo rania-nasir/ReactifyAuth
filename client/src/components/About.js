@@ -1,10 +1,15 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import raniapic from '../Images/rano.png'
+import userpic from '../Images/user.png'
+
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
 const About = () => {
     const navigate = useNavigate();
+
+    const [userData, setUserData] = useState({});
+
     const callAboutPage = async () => {
         try {
             const res = await fetch('/about', {
@@ -18,9 +23,10 @@ const About = () => {
 
             const data = await res.json();
             console.log('data = ' + data);
+            setUserData(data);
 
             if (!res.status === 200) {
-                 const error = new Error(res.error);
+                const error = new Error(res.error);
                 throw error;
             }
 
@@ -42,7 +48,7 @@ const About = () => {
                     <div className="row">
                         <div className="col-md-4 mt-5 ml-4">
                             <div className="profile-img">
-                                <img src={raniapic} alt="profile"></img>
+                                <img src={userData.name === 'Rania' ? raniapic : userpic} alt="profile"></img>
                             </div>
                             <div className="col-md-2 mt-2">
                                 <input type="submit" className="profile-edit-btn m-2" name="btnAddMore" value="Edit Profile" />
@@ -59,8 +65,8 @@ const About = () => {
                         </div>
                         <div className="col-md-6 mt-5 pt-2">
                             <div className="profile-head">
-                                <h5>Rania</h5>
-                                <h6>Full Stack Developer</h6>
+                                <h5>{userData.name}</h5>
+                                <h6>{userData.work}</h6>
                                 <div className="tab-pane fade show active mt-5">
                                     <div className="row mt-2">
                                         <div className="col-md-6">
@@ -75,7 +81,7 @@ const About = () => {
                                             <label>Name</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>Rania</p>
+                                            <p>{userData.name}</p>
                                         </div>
                                     </div>
                                     <div className="row mt-2">
@@ -83,7 +89,7 @@ const About = () => {
                                             <label>Email</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>raniabm21@gmail.com</p>
+                                            <p>{userData.email}</p>
                                         </div>
                                     </div>
                                     <div className="row mt-2">
@@ -91,7 +97,7 @@ const About = () => {
                                             <label>Phone</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>03346543777</p>
+                                            <p>{userData.phone}</p>
                                         </div>
                                     </div>
                                     <div className="row mt-2">
@@ -99,15 +105,7 @@ const About = () => {
                                             <label>Profession</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>Full Stack Developer</p>
-                                        </div>
-                                    </div>
-                                    <div className="row mt-2">
-                                        <div className="col-md-6">
-                                            <label>Address</label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>Faisalabad, Pakistan</p>
+                                            <p>{userData.work}</p>
                                         </div>
                                     </div>
                                 </div>
