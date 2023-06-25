@@ -36,9 +36,33 @@ const Contact = () => {
         const name = e.target.name;
         const value = e.target.value;
 
-        setUserData({ ...userData, [name]:value})
+        setUserData({ ...userData, [name]: value })
     }
 
+    // send data to bckend
+
+    const ContactForm = async (e) => {
+        e.preventDefault();
+        // object destructuring
+        const { name, email, phone, message } = userData;
+        fetch('/contact', {
+            method: "POST",
+            headers: {
+                "Contact-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name, email, phone, message
+            });
+
+            const data = await res.json();
+            if(!data) {
+                console.log('Message not sent');
+            } else {
+                alert('Message Sent!');
+                setUserData({ ...userData, message:"" });
+            }
+        })
+    }
     return (
         <>
             <div className="contact-info">
@@ -138,7 +162,7 @@ const Contact = () => {
                                                 placeholder="Your Message here" cols={120} rows={8}></textarea>
                                         </div>
                                         <div className="contact_form_button mt-2">
-                                            <button type="submit"
+                                            <button type="submit" onClick={ContactForm}
                                                 className="contact_submit_button btn btn-primary">Send Message</button>
                                         </div>
                                     </div>

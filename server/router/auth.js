@@ -129,5 +129,14 @@ router.get('/getdata', authenticate, (req, res) => {
     res.send(req.rootUser)
 })
 
+router.post('/contact', authenticate, (req, res) => {
+    try {
+        const { name, email, phone, message } = req.body;
+        if()
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 
 module.exports = router;
