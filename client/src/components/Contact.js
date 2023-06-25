@@ -2,7 +2,7 @@ import { useEffect, React, useState } from "react"
 
 const Contact = () => {
 
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState({ name: "", email: "", phone: "", message: "" });
 
     const userContact = async () => {
         try {
@@ -15,7 +15,7 @@ const Contact = () => {
 
             const data = await res.json();
             console.log('data = ' + data);
-            setUserData(data);
+            setUserData({ ...userData, name: data.name, email: data.email, phone: data.phone });
 
             if (!res.status === 200) {
                 const error = new Error(res.error);
@@ -30,6 +30,14 @@ const Contact = () => {
     useEffect(() => {
         userContact();
     }, []);
+
+    // we are storing data in states
+    const handleInputs = (e) => {   // e = event object
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setUserData({ ...userData, [name]:value})
+    }
 
     return (
         <>
@@ -101,23 +109,32 @@ const Contact = () => {
                                             <input type="text" id="contact_form_name"
                                                 className="p-2 section contact_form_name input_field"
                                                 value={userData.name}
+                                                name="name"
+                                                onChange={handleInputs}
                                                 placeholder="Your Name" required="true"></input>
                                         </div>
                                         <div className="box-contact right contact_form_email d-flex justify-content-between align-items-between">
                                             <input type="text" id="contact_form_email"
                                                 className="p-2 section contact_form_email input_field"
                                                 value={userData.email}
+                                                name="email"
+                                                onChange={handleInputs}
                                                 placeholder="Your Email" required="true"></input>
                                         </div>
                                         <div className="box-contact right contact_form_number d-flex justify-content-between align-items-between">
                                             <input type="text" id="contact_form_number"
                                                 className="p-2 section contact_form_number input_field"
                                                 value={userData.phone}
+                                                name="phone"
+                                                onChange={handleInputs}
                                                 placeholder="Your Number" required="true"></input>
                                         </div>
 
                                         <div className="contact_form_text mt-5">
                                             <textarea className="text_field section contact_form_message p-2"
+                                                value={userData.message}
+                                                name="message"
+                                                onChange={handleInputs}
                                                 placeholder="Your Message here" cols={120} rows={8}></textarea>
                                         </div>
                                         <div className="contact_form_button mt-2">
