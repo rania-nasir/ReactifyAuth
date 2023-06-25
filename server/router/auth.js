@@ -123,9 +123,11 @@ router.get('/about', authenticate, (req, res) => {
     res.send(req.rootUser)
 })
 
-// router.get('/contact', (req, res) => {
-//     res.send('Hello Contact World from the server...')
-// })
+// get user data for contact and home page
+router.get('/getdata', authenticate, (req, res) => {
+    console.log('Hello my contact')
+    res.send(req.rootUser)
+})
 
 
 module.exports = router;

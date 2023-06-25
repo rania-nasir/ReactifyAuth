@@ -1,6 +1,36 @@
-import React from "react";
+import { useEffect, React, useState } from "react"
 
 const Contact = () => {
+
+    const [userData, setUserData] = useState({});
+
+    const userContact = async () => {
+        try {
+            const res = await fetch('/getdata', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await res.json();
+            console.log('data = ' + data);
+            setUserData(data);
+
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        userContact();
+    }, []);
+
     return (
         <>
             <div className="contact-info">
@@ -68,20 +98,31 @@ const Contact = () => {
                                 <form id="contact_form" action="" className="center">
                                     <div className="container">
                                         <div className="box-contact right contact_form_name center">
-                                            <input type="text" id="contact_form_name" className="p-2 section contact_form_name input_field" placeholder="Your Name" required="true"></input>
+                                            <input type="text" id="contact_form_name"
+                                                className="p-2 section contact_form_name input_field"
+                                                value={userData.name}
+                                                placeholder="Your Name" required="true"></input>
                                         </div>
                                         <div className="box-contact right contact_form_email d-flex justify-content-between align-items-between">
-                                            <input type="text" id="contact_form_email" className="p-2 section contact_form_email input_field" placeholder="Your Email" required="true"></input>
+                                            <input type="text" id="contact_form_email"
+                                                className="p-2 section contact_form_email input_field"
+                                                value={userData.email}
+                                                placeholder="Your Email" required="true"></input>
                                         </div>
                                         <div className="box-contact right contact_form_number d-flex justify-content-between align-items-between">
-                                            <input type="text" id="contact_form_number" className="p-2 section contact_form_number input_field" placeholder="Your Number" required="true"></input>
+                                            <input type="text" id="contact_form_number"
+                                                className="p-2 section contact_form_number input_field"
+                                                value={userData.phone}
+                                                placeholder="Your Number" required="true"></input>
                                         </div>
 
                                         <div className="contact_form_text mt-5">
-                                            <textarea className="text_field section contact_form_message p-2" placeholder="Your Message here" cols={120} rows={8}></textarea>
+                                            <textarea className="text_field section contact_form_message p-2"
+                                                placeholder="Your Message here" cols={120} rows={8}></textarea>
                                         </div>
                                         <div className="contact_form_button mt-2">
-                                            <button type="submit" className="contact_submit_button btn btn-primary">Send Message</button>
+                                            <button type="submit"
+                                                className="contact_submit_button btn btn-primary">Send Message</button>
                                         </div>
                                     </div>
 

@@ -31,7 +31,6 @@ const About = () => {
             }
 
         } catch (err) {
-            console.log('the about file is approacable')
             console.log(err);
             navigate('/login')
         }
