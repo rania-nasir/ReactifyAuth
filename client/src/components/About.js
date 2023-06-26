@@ -15,8 +15,8 @@ const About = () => {
             const res = await fetch('/about', {
                 method: "GET",
                 headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
+                    Accept: 'application/json',
+                    'Contact-Type': 'application/json'
                 },
                 credentials: "include"
             });

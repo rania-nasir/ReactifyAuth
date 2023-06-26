@@ -45,23 +45,24 @@ const Contact = () => {
         e.preventDefault();
         // object destructuring
         const { name, email, phone, message } = userData;
-        fetch('/contact', {
+        // alert('->' + name + email + phone + message + '<-');
+        const res = await fetch('/contact', {
             method: "POST",
             headers: {
-                "Contact-Type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 name, email, phone, message
-            });
+            })
+        });
 
-            const data = await res.json();
-            if(!data) {
-                console.log('Message not sent');
-            } else {
-                alert('Message Sent!');
-                setUserData({ ...userData, message:"" });
-            }
-        })
+        await res.json();
+        if (res.status === 201) {
+            alert('Message Sent!');
+            setUserData({ ...userData, message: "" });
+        } else {
+            console.log('Message not sent');
+        }
     }
     return (
         <>
@@ -127,7 +128,7 @@ const Contact = () => {
                                 <div className="contact_form_title ml-2">
                                     <h3> Get In Touch</h3>
                                 </div>
-                                <form id="contact_form" action="" className="center">
+                                <form id="contact_form" method="POST" className="center">
                                     <div className="container">
                                         <div className="box-contact right contact_form_name center">
                                             <input type="text" id="contact_form_name"

@@ -18,22 +18,19 @@ const PORT = process.env.PORT
 //     next();
 // });
 
+app.use(cookieParser())
 
+// if data in the form of express json, convert into object and show
+app.use(express.json()); // To parse JSON payloads
 
 // Database Connection
 require('./db/conn');
 
 // Model & User Schema
-// const User = require('./model/userSchema');
-
-app.use(cookieParser())
-
-// if data in the form of express json, convert into object and show
-app.use(express.json());
+const User = require('./model/userSchema');
 
 // link to Router to make our route easy
 app.use(require('./router/auth'));
-
 
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}...`)
