@@ -29,8 +29,13 @@ h6 {
   width: 100px;
 }
 
+.wel{
+  font-weight: bold;
+  color: rgb(3, 195, 209);
+}
+
 .App-logo {
-  width: 250px;
+  width: 150px;
   pointer-events: none;
 }
 

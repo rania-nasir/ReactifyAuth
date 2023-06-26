@@ -28,8 +28,11 @@ const Navbar = () => {
                         <li className="nav-item p-1">
                             <NavLink className="nav-link" to="/login">Login<span className="sr-only"></span></NavLink>
                         </li>
-                        <li className="nav-item mr-3 p-1">
+                        <li className="nav-item p-1">
                             <NavLink className="nav-link" to="/signup">Register<span className="sr-only"></span></NavLink>
+                        </li>
+                        <li className="nav-item mr-3 p-1">
+                            <NavLink className="nav-link" to="/logout">Logout<span className="sr-only"></span></NavLink>
                         </li>
                     </ul>
                 </div>
