@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Contact from './components/Contact'
 import Signup from './components/Signup'
 import Errorpage from './components/Errorpage'
+import Logout from './components/logout'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
@@ -30,6 +31,9 @@ const App = () => {
         </Route>
 
         <Route path='/signup' element={<Signup />}>
+        </Route>
+
+        <Route path='/logout' element={<Logout />}>
         </Route>
 
         <Route path="*" element={<Errorpage />}>
