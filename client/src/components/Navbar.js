@@ -1,9 +1,53 @@
-import React from "react"
+import { React, useContext } from "react"
 import 'bootstrap/dist/css/bootstrap.css'
 import { NavLink } from "react-router-dom"
 import logo from '../Images/mern.png'
+import { UserContext } from '../App'
 
 const Navbar = () => {
+    const { state, dispatch } = useContext(UserContext);
+
+    const RenderMenu = () => {
+        if (state) {
+            return (
+                <>
+                    <li className="nav-item active p-1">
+                        <NavLink className="nav-link" to="/">Home <span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item p-1">
+                        <NavLink className="nav-link" to="/about">About <span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item p-1">
+                        <NavLink className="nav-link" to="/contact">Contact<span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item mr-3 p-1">
+                        <NavLink className="nav-link" to="/logout">Logout<span className="sr-only"></span></NavLink>
+                    </li>
+                </>
+            )
+        }
+        else {
+            return (
+                <>
+                    <li className="nav-item active p-1">
+                        <NavLink className="nav-link" to="/">Home <span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item p-1">
+                        <NavLink className="nav-link" to="/about">About <span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item p-1">
+                        <NavLink className="nav-link" to="/contact">Contact<span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item p-1">
+                        <NavLink className="nav-link" to="/login">Login<span className="sr-only"></span></NavLink>
+                    </li>
+                    <li className="nav-item p-1">
+                        <NavLink className="nav-link" to="/signup">Register<span className="sr-only"></span></NavLink>
+                    </li>
+                </>
+            )
+        }
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,24 +60,7 @@ const Navbar = () => {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto">
-                        <li className="nav-item active p-1">
-                            <NavLink className="nav-link" to="/">Home <span className="sr-only"></span></NavLink>
-                        </li>
-                        <li className="nav-item p-1">
-                            <NavLink className="nav-link" to="/about">About <span className="sr-only"></span></NavLink>
-                        </li>
-                        <li className="nav-item p-1">
-                            <NavLink className="nav-link" to="/contact">Contact<span className="sr-only"></span></NavLink>
-                        </li>
-                        <li className="nav-item p-1">
-                            <NavLink className="nav-link" to="/login">Login<span className="sr-only"></span></NavLink>
-                        </li>
-                        <li className="nav-item p-1">
-                            <NavLink className="nav-link" to="/signup">Register<span className="sr-only"></span></NavLink>
-                        </li>
-                        <li className="nav-item mr-3 p-1">
-                            <NavLink className="nav-link" to="/logout">Logout<span className="sr-only"></span></NavLink>
-                        </li>
+                        <RenderMenu />
                     </ul>
                 </div>
             </nav>

@@ -1,37 +1,41 @@
-import React, { useState } from "react";
-import loginpic from "../Images/loginpic.jpg"
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import loginpic from '../Images/loginpic.jpg';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { UserContext } from '../App';
 
 const Login = () => {
+    const { state, dispatch } = useContext(UserContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const loginUser = async (e) => {
-        e.preventDefault(); //to stop the reload
+        e.preventDefault();
         const res = await fetch('/signin', {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                email, password
-            })
-        })
+                email,
+                password,
+            }),
+        });
 
         await res.json();
         if (res.status === 400 || res.status === 422) {
             window.alert('Invalid Credentials');
             console.log('Invalid Credentials');
         } else if (res.status === 200) {
+            dispatch({ type: 'USER', payload: true });
             window.alert('Login Successful');
             console.log('Login Successful');
-            navigate("/");
+            navigate('/');
         } else {
             window.alert('Something went wrong');
             console.log('Something went wrong');
         }
-    }
+    };
     return (
         <>
             <section className="login">
