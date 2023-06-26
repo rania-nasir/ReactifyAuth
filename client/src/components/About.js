@@ -47,7 +47,7 @@ const About = () => {
                     <div className="row">
                         <div className="col-md-4 mt-5 ml-4">
                             <div className="profile-img">
-                                <img src={userData.name === 'Rania' ? raniapic : userpic} alt="profile"></img>
+                                <img src={userData.email === 'raniabm21@gmail.com' ? raniapic : userpic} alt="profile"></img>
                             </div>
                             <div className="col-md-2 mt-2">
                                 <input type="submit" className="profile-edit-btn m-2" name="btnAddMore" value="Edit Profile" />
