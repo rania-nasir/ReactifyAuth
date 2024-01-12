@@ -1,4 +1,4 @@
-# Mern-Project
+# ReactifyAuth
 This is a basic Mern (MongoDB ExpressJS React NodeJS) Stack Project for self-learning purposes. I used JWT(jsonwebtoken) for authentication, and React Hooks for user-friendly interface.
 
 
